@@ -4,15 +4,16 @@ Collect, Dodge, Survive - Lectures 06-07.
 
 ## Project status
 
-A2's committed development foundation and Git history have been imported. New A3 gameplay and layouts are still to be built.
+Level01 is now a new, playable Synty training courtyard, authored directly in Unity through MCP. Its objects, colliders, UI and prefab instances are saved in the scene; there is no scene-generation script. Level02-Level05 remain inherited foundation scenes awaiting their new A3 layouts and mechanics.
 
 - **Started from:** [Assignment 02](https://github.com/arty542/CS464-A2-bscs23204), development commit `7d1a697`.
 - **Unity:** 6000.3.24f1 (Unity 6.3).
 - **Working branch:** `development`; merge a pull request into `main` when ready for marking.
 - **Foundation:** Rigidbody movement, camera-relative controls, height-based jumping, coyote time, jump buffering, faster falling, landing squash and smooth camera following.
-- **MCP:** Original A3 package configuration and project identity retained. Editor connectivity and play verification remain pending.
-- **New levels:** The instructor requires fresh A3 layouts, also used for Lab 6. The inherited A2 scenes are temporary foundation scenes, not the final designs. Previous assignment and lab layouts will not be reused.
-- **Inherited controls:** WASD or arrow keys to move; Space to jump.
+- **MCP:** Connected to the A3 editor. Level01 passed 21 Play-mode checks, including actual movement input and clicks on both restart buttons.
+- **New levels:** The instructor requires fresh A3 layouts, also used for Lab 6. Level01 has been replaced with an original courtyard/balcony/garden route. The remaining inherited layouts are temporary and will be replaced.
+- **Controls:** WASD or arrow keys to move; Space to jump; R to restart. Win and lose panels also have clickable restart buttons.
+- **To win Level01:** Collect at least 8 of its 10 coins, then enter the green FINISH gate. Hold forward on the bounce pad to reach the balcony; use Space and forward for the final gap.
 - **Video:** Pending. Add a public 60-120 second YouTube or Google Drive link, never the video file.
 
 ## Planned phases
@@ -29,6 +30,16 @@ A2's committed development foundation and Git history have been imported. New A3
 | 5 - Crusher and power-up | Warned crusher and timed speed boost with a player-owned timer. Planned second-pickup rule: refresh duration without stacking speed. | Crusher warns for at least 0.5 seconds; boost survives pickup destruction, refreshes deliberately and expires correctly. |
 | 6 - Integration | Teach one new idea per level before combining it with earlier mechanics; tune routes and recovery. | Every scene can be won, lost and restarted; all five are in the Build Profiles Scene List. |
 | 7 - Submission | Five screenshots, measured tuning table, four short answers, demo video, final checks and PR into main. | Fresh clone works; screenshot/video links open; public repository is ready for LMS submission. |
+
+## Level01 - Training courtyard
+
+<img src="Docs/a3/level01.png" width="900" alt="The new Synty training courtyard with coins, signs, bounce pad and TextMesh Pro HUD">
+
+<img src="Docs/a3/level01-overview.png" width="900" alt="Overview of the original courtyard, raised balcony checkpoint and exit garden">
+
+The safe courtyard teaches collection and the bounce pad. Its balcony activates a checkpoint, then a normal jump leads to the exit garden. Falling consumes one of three lives and returns the player to the latest checkpoint, keeping collected coins; losing the last life shows the lose panel. Winning and losing freeze time, and either restart button restores time before reloading.
+
+The reusable Coin, BouncePad, PlayerA3 and HUD prefabs are in `Assets/Prefabs/A3/`. The level has no damaging enemies or obstacles yet. See [Level01 implementation notes](Docs/a3/Level01-Notes.md) and the [21 passed Play-mode checks](Docs/a3/Level01-PlayChecks.json).
 
 ## Intended level progression
 

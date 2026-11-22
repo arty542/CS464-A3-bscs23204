@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "stage": 17,
+  "passed": [
+    "Fresh scene starts at 0 coins and 3 lives",
+    "Three hearts initialize correctly",
+    "Ten coin triggers are present",
+    "Finish gate rejects a player without enough coins",
+    "Physical coin contact counts once and hides the pickup",
+    "Bounce launch remains effective while the player controller is enabled",
+    "Holding forward carries the player onto the raised balcony",
+    "Landing route activates the checkpoint",
+    "Normal Space jump clears the three-metre garden gap",
+    "A fall costs exactly one life and respawns the player",
+    "Respawn returns to the checkpoint at rest",
+    "Coins persist across a lost life",
+    "Respawn grants temporary damage protection",
+    "A second fall removes only one life",
+    "Last life freezes the lose state",
+    "Lose panel is visible",
+    "Clicking lose-panel Restart reloads an unfrozen fresh scene",
+    "Eight distinct physical pickups reach the score target",
+    "Finish trigger displays the win state and freezes time",
+    "Clicking win-panel Restart also resets time and state",
+    "Restart restores all ten pickups"
+  ],
+  "error": null
+}

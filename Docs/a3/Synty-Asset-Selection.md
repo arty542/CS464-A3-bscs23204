@@ -4,7 +4,7 @@
 
 Use the instructor-provided `Assets/Synty/PolygonGeneric` and `Assets/Synty/PolygonPrototype` packages for an overgrown industrial courtyard setting. Combine concrete walkways and brick walls with crates, pipes, trees and ivy. Give each of the five original layouts a distinct space within the same setting.
 
-This is a verified asset shortlist for the next build phase. No new level geometry has been placed yet. Prefab files, material assignments and several source textures were inspected; final scale, appearance, animation and collider behavior still need checking in Unity.
+This is the verified asset shortlist for the A3 levels. Level01 has now been authored directly in Unity through MCP using this kit, with its layout and gameplay checked in Play mode. The remaining levels and their hazard/character assets still need integration and visual checks.
 
 ## Main environment kit
 

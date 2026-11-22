@@ -45,4 +45,12 @@ public class CameraFollow : MonoBehaviour
         transform.position = smoothedAimPoint + offset;
         transform.LookAt(smoothedAimPoint);
     }
+
+    public void SnapToTarget()
+    {
+        if (target == null) return;
+        smoothedAimPoint = target.position;
+        transform.position = smoothedAimPoint + offset;
+        transform.LookAt(smoothedAimPoint);
+    }
 }
