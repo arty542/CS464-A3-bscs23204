@@ -17,6 +17,8 @@ A2's committed development foundation and Git history have been imported. New A3
 
 ## Planned phases
 
+**Visual kit:** Use the instructor's Synty PolygonGeneric and PolygonPrototype packages for five new spaces in an overgrown industrial courtyard setting. The [asset shortlist](Docs/a3/Synty-Asset-Selection.md) records selected prefabs, supplied materials, gameplay roles and integration checks.
+
 | Phase | Work | Completion check |
 |---|---|---|
 | 0 - Foundation | Import A2 code and history; retain A3 MCP configuration; use development. | Verify ancestry, remotes, packages and asset references; Unity play verification remains pending. |
