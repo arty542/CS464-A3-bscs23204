@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 4d62890edc7683c4cafb9c219abf6e32
+  productGUID: b3c7465593ad7c64e93bf8b97749d1e2
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: CS464-A1-bscs23204
+  productName: CS464-A3-bscs23204
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -929,10 +929,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 00e8b39b-b628-4eeb-99f9-a0b29f36a9e9
+  cloudProjectId: 11a30d4d-afc0-43fc-9966-b574f002ee63
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: CS464-A1-bscs23204
+  projectName: CS464-A3-bscs23204
   organizationId: artyf
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
