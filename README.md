@@ -1,67 +1,100 @@
-# CS464 Assignment 03 - BSCS23204
+# CS464 Assignment 03 — BSCS23204
 
-Collect, Dodge, Survive - Lectures 06-07.
+**Collect, Dodge, Survive** · Unity 6000.3.24f1 · Lectures 06–07
 
-## Project status
+Five original levels built directly in the Unity Editor through MCP, using the instructor's Synty PolygonGeneric and PolygonPrototype assets. Geometry, colliders, UI and gameplay instances are saved in the scenes; no runtime or Editor script generates the levels. The A2 movement/camera foundation and Git history are retained, while all five A3 layouts are new.
 
-Level01 is now a new, playable Synty training courtyard, authored directly in Unity through MCP. Its objects, colliders, UI and prefab instances are saved in the scene; there is no scene-generation script. Level02-Level05 remain inherited foundation scenes awaiting their new A3 layouts and mechanics.
+## Run
 
-- **Started from:** [Assignment 02](https://github.com/arty542/CS464-A2-bscs23204), development commit `7d1a697`.
-- **Unity:** 6000.3.24f1 (Unity 6.3).
-- **Working branch:** `development`; merge a pull request into `main` when ready for marking.
-- **Foundation:** Rigidbody movement, camera-relative controls, height-based jumping, coyote time, jump buffering, faster falling, landing squash and smooth camera following.
-- **MCP:** Connected to the A3 editor. Level01 passed 21 Play-mode checks, including actual movement input and clicks on both restart buttons.
-- **New levels:** The instructor requires fresh A3 layouts, also used for Lab 6. Level01 has been replaced with an original courtyard/balcony/garden route. The remaining inherited layouts are temporary and will be replaced.
-- **Controls:** WASD or arrow keys to move; Space to jump; R to restart. Win and lose panels also have clickable restart buttons.
-- **To win Level01:** Collect at least 8 of its 10 coins, then enter the green FINISH gate. Hold forward on the bounce pad to reach the balcony; use Space and forward for the final gap.
-- **Video:** Pending. Add a public 60-120 second YouTube or Google Drive link, never the video file.
+1. Open this folder in Unity **6000.3.24f1** and let packages import.
+2. Open `Assets/Scenes/Level01.unity` and press Play, or build the five enabled scenes in Build Profiles.
+3. Use **WASD / arrows** to move, **Space** to jump and **R** to restart. Both result panels have clickable restart buttons. Winning also offers the next level; the final level returns to Level01.
 
-## Planned phases
+Collect **8 of 10 coins** in Levels 1–4 and **10 of 12** in Level 5, then enter the green FINISH gate. Each level starts with three hearts and three lives. Damage uses a shared one-second invulnerability window; empty hearts or a fall consume one life. Respawning keeps collected coins and returns to the latest checkpoint. Restart resets that level completely.
 
-**Visual kit:** Use the instructor's Synty PolygonGeneric and PolygonPrototype packages for five new spaces in an overgrown industrial courtyard setting. The [asset shortlist](Docs/a3/Synty-Asset-Selection.md) records selected prefabs, supplied materials, gameplay roles and integration checks.
+Video recording omitted at the user's request.
 
-| Phase | Work | Completion check |
+
+
+## Level progression
+
+| Scene | New idea and route | Combination |
 |---|---|---|
-| 0 - Foundation | Import A2 code and history; retain A3 MCP configuration; use development. | Verify ancestry, remotes, packages and asset references; Unity play verification remains pending. |
-| 1 - Fresh layouts | Build original Level01-Level05 using the reusable player, camera and asset kit. | Clear starts, readable routes and reachable finishes; no reused layouts. |
-| 2 - Collect and win | Coin prefab, at least five coins per scene, GameManager, TMP score, win panel, restart and bounce pad. | Coins count once, win freezes time, restart restores time, and the force works. Compare the Lab 6 handout with these new levels before preparing that submission. |
-| 3 - Damage and survival | Shared Hazard script, spikes, visible knockback, Health with i-frames, TMP hearts/lives, fall zone, protected respawn and lose/restart. | Accepted hits cause one knockback, recovery prevents repeated damage, falls cost a life, and the last life ends the game. |
-| 4 - Guards | Three or more waypoints, distance-based arrival, Patrol/Chase/Return, separate detection and give-up ranges, contact damage. | Guards chase slower than the normal player run, give up and return to patrol. |
-| 5 - Crusher and power-up | Warned crusher and timed speed boost with a player-owned timer. Planned second-pickup rule: refresh duration without stacking speed. | Crusher warns for at least 0.5 seconds; boost survives pickup destruction, refreshes deliberately and expires correctly. |
-| 6 - Integration | Teach one new idea per level before combining it with earlier mechanics; tune routes and recovery. | Every scene can be won, lost and restarted; all five are in the Build Profiles Scene List. |
-| 7 - Submission | Five screenshots, measured tuning table, four short answers, demo video, final checks and PR into main. | Fresh clone works; screenshot/video links open; public repository is ready for LMS submission. |
+| Level01 — Training Courtyard | Safe coin collection, bounce launch to a raised balcony, checkpoint, then a normal gap jump. | Teaches score, finish, falling, lives and restarting without damaging obstacles. |
+| Level02 — Broken Garden | A visible spike bed teaches damage before a concealed proximity trap on the bridge. Approach, back away, then cross during its cooldown. | Hearts, knockback, a checkpoint and a sideways jump to the separate finish island. |
+| Level03 — Loading Yard | A four-waypoint loop in an open yard; watch patrol, enter its detection range, then outrun the guard. Its label shows Patrol / Chase / Return. | Previously introduced spike beds and risky coin detours. |
+| Level04 — Press Workshop | A jump wakes sliding spikes that follow the player's landing X. An orange warning precedes the crusher strike. | A checkpoint after the press, a guard and an eastward spike bay. |
+| Level05 — Escape Yard | Two speed potions demonstrate refreshing the timer without stacking speed; the clear outside lane provides room to learn the boost. | Concealed spikes, sliding spikes, a ping-pong guard, a crusher and a final gap jump. |
 
-## Level01 - Training courtyard
+The concealed and jump-reactive spike variations were added at the user's request, taking inspiration from **Level Devil** and **Trap Adventure 2**. Their spikes are hidden at rest, with an orange footprint and a short warning before damage. They reuse the same Hazard/Health system as ordinary spikes and guards.
 
-<img src="Docs/a3/level01.png" width="900" alt="The new Synty training courtyard with coins, signs, bounce pad and TextMesh Pro HUD">
+| Level | Screenshot |
+|---|---|
+| 01 | ![Training Courtyard](Docs/a3/level01.png) |
+| 02 | ![Broken Garden](Docs/a3/level02.png) |
+| 03 | ![Loading Yard](Docs/a3/level03.png) |
+| 04 | ![Press Workshop](Docs/a3/level04.png) |
+| 05 | ![Escape Yard](Docs/a3/level05.png) |
 
-<img src="Docs/a3/level01-overview.png" width="900" alt="Overview of the original courtyard, raised balcony checkpoint and exit garden">
+## Implementation
 
-The safe courtyard teaches collection and the bounce pad. Its balcony activates a checkpoint, then a normal jump leads to the exit garden. Falling consumes one of three lives and returns the player to the latest checkpoint, keeping collected coins; losing the last life shows the lose panel. Winning and losing freeze time, and either restart button restores time before reloading.
+- `GameManager` owns score, lives, checkpoint respawn, result panels and scene changes. It resets `Time.timeScale` before every restart or next-level load.
+- `Coin` is a reusable trigger prefab. A Player tag check and a collected flag ensure each pickup counts once.
+- `EnemyPatrol` uses a kinematic Rigidbody, `MovePosition`/`MoveTowards`, at least three assigned waypoints and a distance threshold. Detection and give-up ranges differ to prevent rapid state switching. Guards operate on open ground; the assignment does not require obstacle navigation.
+- `Hazard` is shared by spikes, guards and crushers. Only an accepted `Health.TakeDamage` call produces a flat outward impulse. The movement controller yields control during knockback, including jump input.
+- `Health` owns the single i-frame timer. The manager disables movement during the respawn delay, restores the player at rest and grants temporary protection. The final lost life freezes the lose panel.
+- `Crusher` cycles rest → orange warning → visible damaging slab. `ProximitySpikes` and `SlidingSpikes` enable their damage colliders only during their active phases.
+- `PowerUp` destroys the bottle after pickup. The coroutine and remaining-time display live on the player, so destruction does not end the effect. A second pickup replaces the old timer with a full five seconds at the same multiplier. Respawn/restart clears the boost.
+- Reusable gameplay prefabs are in `Assets/Prefabs/A3/`. Synty art selection and integration notes are in [the asset shortlist](Docs/a3/Synty-Asset-Selection.md).
 
-The reusable Coin, BouncePad, PlayerA3 and HUD prefabs are in `Assets/Prefabs/A3/`. The level has no damaging enemies or obstacles yet. See [Level01 implementation notes](Docs/a3/Level01-Notes.md) and the [21 passed Play-mode checks](Docs/a3/Level01-PlayChecks.json).
+## Tuning and reasons
 
-## Intended level progression
-
-These are new designs to build, not descriptions of the inherited A2 scenes.
-
-| Level | New idea | Combined with |
+| Setting | Actual value | Reason |
 |---|---|---|
-| Level01 | Coins, goal and bounce pad | Safe introduction without damaging obstacles; a fall can still lose a life. |
-| Level02 | Spikes and damage recovery | A safe demonstration followed by a risky coin detour. |
-| Level03 | Patrol, chase and escape | Open guard routes with previously taught spikes. |
-| Level04 | Crusher timing | A safe warning demonstration before mixing with guards. |
-| Level05 | Timed speed boost and second pickup | Two reachable pickups, earlier mechanics and a ping-pong guard. |
+| Player run / jump height | 5 m/s / 1.8 m | The ordinary run clears the designed 3 m gaps with a correctly timed jump. |
+| Guard patrol / chase | 2 / 3.5 m/s | Patrol is readable; chase remains slower than the unboosted player. |
+| Chase / give-up range | 4 / 7 m | A longer escape radius avoids flickering between Patrol and Chase at one boundary. |
+| Waypoint arrival | Distance < 0.15 m | Small tolerance handles frame steps and floating-point positions. |
+| Spike / guard damage | 1 heart | A first mistake leaves two hearts to recover and learn. |
+| Crusher damage | 2 hearts | The stronger hit is preceded by a visible warning and a safe waiting area. |
+| Knockback / ForceMode | 6 / Impulse | A single accepted hit gives immediate outward motion, rather than a continuous force. |
+| Control lock | 0.25 s | The next movement update cannot overwrite the visible knockback. |
+| Damage i-frames | 1 s | Repeated trigger callbacks cannot drain all hearts immediately. |
+| Starting hearts / lives | 3 / 3 | Recovery and checkpoint systems can be learned before the lose state. |
+| Respawn delay / protection | 0.8 / 1.5 s | Separates death from recovery and prevents immediate damage on return. |
+| Crusher rest / warning / strike | 2.2 / 0.8 / 0.65 s | The warning exceeds 0.5 seconds and the following rest permits crossing. |
+| Speed multiplier / duration | 1.6× / 5 s | An 8 m/s run feels distinct and the second bottle is reachable before expiry. |
+| Second power-up | Refresh to 5 s; stay at 1.6× | Keeps speed predictable and cancels the older expiry coroutine. |
+| Proximity reveal / warning / rise | 4 m / 0.5 s / 0.18 s | Gives time to bait the hidden tile and back away before damage begins. |
+| Proximity active / cooldown | 1.6 / 2 s | Provides a visible trap cycle and a crossing opportunity. |
+| Slider detection / warning | 5 m / 0.5 s | A nearby upward jump triggers the tell before the spikes appear. |
+| Slider speed / active / cooldown | 3 m/s / 1.3 s / 2 s | Follows the landing while leaving time and space to move away. |
+| Slider X limits | Level04: −7…7; Level05: −3…11 m | Keeps the moving damage footprint on its own broad platform. |
+| Bounce force | 11.5 / VelocityChange | A deliberate vertical velocity change launches the player to the balcony independently of mass. |
 
-## Final write-up to complete after playtesting
+## Required short answers
 
-Add `Docs/a3/level01.png` through `level05.png`, a screenshot table, the final win condition and video link.
+**1. Why does a trigger need a Rigidbody on at least one object?**
 
-Record actual values and reasons for patrol speed, chase range, knockback and ForceMode, i-frame duration, power-up duration and any additional tuning.
+A trigger reports overlaps through Unity's physics simulation rather than behaving as a solid wall. A Rigidbody on at least one participating object lets the physics system generate the trigger callbacks; here the moving player supplies it for coins, checkpoints and static hazards. Guards and sliding spikes also have kinematic Rigidbodies for their own controlled movement.
 
-Write the required answers in your own words about the finished code:
+**2. Which ForceModes are used, and why?**
 
-1. Why does a trigger need a Rigidbody on at least one object?
-2. Which ForceModes do knockback and the additional force use, and why?
-3. What happens when a second power-up is collected during an active effect?
-4. Why can equality fail for waypoint arrival, and when can it work?
+Knockback uses `ForceMode.Impulse` once when damage is accepted, giving a sudden change in momentum whose velocity effect depends on mass. The bounce pad uses `ForceMode.VelocityChange` for a consistent upward launch independent of mass. The inherited jump also uses a mass-scaled impulse, while faster falling uses `ForceMode.Acceleration` each physics step.
+
+**3. What happens when another power-up is collected during the effect?**
+
+The second potion refreshes the duration to five seconds and keeps the multiplier at 1.6, so speed never stacks. The player stops the previous boost coroutine before starting the replacement, preventing the earlier timer from ending the refreshed effect. The pickup can be destroyed immediately because it does not own the timer.
+
+**4. Why can equality fail for waypoint arrival, and when can it work?**
+
+Movement advances in frame-sized steps, so reaching a target depends on the movement method and its tolerance. Unity's `Vector3 ==` already uses a very small tolerance, and `MoveTowards` clamps to the target, so equality can work in that combination. An explicit `Vector3.Distance < 0.15f` states this guard's intended arrival radius clearly and remains useful if the movement method changes. See [Unity's Vector3 equality reference](https://docs.unity.com/en-us/engine/6000.3/script-reference/unityengine/vector3/op-equality).
+
+## Verification and repository
+
+- [Level01 Play-mode checks](Docs/a3/Level01-PlayChecks.json): 21 checks, including actual movement input, bounce, gap jump, protected checkpoint respawn and clicks on both restart buttons.
+- [Integration Play-mode checks](Docs/a3/Integration-PlayChecks.json): 38 checks in Level05 covering physical coin/potion/hazard/finish contacts, real jump-triggered sliding, guard states, boost refresh/expiry, i-frames and control lock, zero-heart death, falls, both result panels and final level navigation.
+- These are targeted physics and UI checks with controlled test positioning between scenarios. No test or recording harness is included in the game's Assets folder.
+- All five scenes are enabled in order in the Build Profiles Scene List. A Windows 64-bit Mono build succeeded with zero errors; see [the build summary](Docs/a3/Build-Verification.json).
+- Foundation: [Assignment 02](https://github.com/arty542/CS464-A2-bscs23204), commit `7d1a697`. A2 was not modified.
+- Development is kept on `development`; the final pull request is merged into `main` for marking.

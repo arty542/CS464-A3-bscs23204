@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-25",
+  "build": {
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output": "Builds/A3/CollectDodgeSurvive.exe",
+    "durationSeconds": 353.45,
+    "sizeMB": 175.04,
+    "errors": 0,
+    "warnings": 2
+  },
+  "playMode": {
+    "level01Passed": 21,
+    "level05IntegrationPassed": 38,
+    "errorsAfterOpeningRemainingScenes": 0
+  },
+  "sceneInitialization": [
+    {
+      "scene": "Level02",
+      "coins": 10,
+      "heading": "02 / BROKEN GARDEN",
+      "missing": []
+    },
+    {
+      "scene": "Level03",
+      "coins": 10,
+      "heading": "03 / LOADING YARD",
+      "missing": []
+    },
+    {
+      "scene": "Level04",
+      "coins": 10,
+      "heading": "04 / PRESS WORKSHOP",
+      "missing": []
+    },
+    {
+      "scene": "Level05",
+      "coins": 12,
+      "heading": "05 / ESCAPE YARD",
+      "missing": []
+    }
+  ],
+  "video": "Omitted at the user's request."
+}

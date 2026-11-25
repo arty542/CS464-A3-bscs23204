@@ -2,9 +2,9 @@
 
 ## Direction
 
-Use the instructor-provided `Assets/Synty/PolygonGeneric` and `Assets/Synty/PolygonPrototype` packages for an overgrown industrial courtyard setting. Combine concrete walkways and brick walls with crates, pipes, trees and ivy. Give each of the five original layouts a distinct space within the same setting.
+Use the instructor-provided `Assets/Synty/PolygonGeneric` and `Assets/Synty/PolygonPrototype` packages for a sparse industrial setting. Concrete platforms, crates, barrels, teal markers and plain TMP signs give all five original layouts the same visual language.
 
-This is the verified asset shortlist for the A3 levels. Level01 has now been authored directly in Unity through MCP using this kit, with its layout and gameplay checked in Play mode. The remaining levels and their hazard/character assets still need integration and visual checks.
+All five A3 levels are authored directly through Unity MCP and checked in Play mode. Level01's earlier trees, planters and brick walls were removed at the user's request to match the other levels. The table below records the supplied asset kit; trees, ivy and landscape pieces remain optional rather than part of the final Level01 layout.
 
 ## Main environment kit
 
@@ -75,16 +75,16 @@ These are visual assets, not ready-made A3 gameplay scripts. The inspected Coin,
 
 The concrete, grass and brick source textures and Prototype atlas were visually inspected. Keep prop atlas assignments, material slots and UV mapping intact. Create A3-specific material copies only where needed, then verify the actual result under the project's URP lighting.
 
-Use gold coin silhouettes, cyan boost markers, red hazard outlines, yellow/black crusher warnings and a green exit marker as the planned gameplay vocabulary. Pair color with shape, text or motion: a coin disk, a potion bottle, pointed spikes, a warning symbol and FINISH text. Environmental grass is scenery, not a goal cue. Keep decorative effects quieter than gameplay feedback.
+Use gold coin silhouettes, teal checkpoint markers, red spike/guard/slab visuals, orange trap warnings and green pickup/finish markers as the gameplay vocabulary. Pair color with shape, text or motion: a coin disk, a potion bottle, pointed spikes, a warning symbol and FINISH text. Environmental grass is scenery, not a goal cue. Keep decorative effects quieter than gameplay feedback.
 
 ## Five new spaces
 
-| Scene | Proposed space | Asset emphasis | New mechanic |
+| Scene | Final space | Asset emphasis | New mechanic |
 |---|---|---|---|
-| Level01 | Training courtyard | Concrete paving, low brick walls, trees, a raised landing and the Synty boost pad. | Coins, goal and bounce pad; safe first demonstration. |
-| Level02 | Broken garden walk | Destroyed walls, rocks and ivy around wide ledges and an optional coin detour. | Spikes and recovery after damage. |
+| Level01 | Training courtyard | Concrete paving, sparse crates/barrels, a raised landing and the Synty boost pad. | Coins, goal and bounce pad; safe first demonstration. |
+| Level02 | Broken garden walk | Rocks and crates around wide concrete ledges, a narrow bridge and a separate finish island. | Visible and concealed spikes, with recovery after damage. |
 | Level03 | Loading yard | Crates, barrels and open concrete lanes, with a clear escape route. | Guard patrol/chase/return. Keep its route clear because direct MoveTowards does not navigate around walls. |
-| Level04 | Press workshop | Pillars, pipes, wall lights and a suspended Synty slab with a marked strike zone. | Warned crusher, then a combination with a guard. |
+| Level04 | Press workshop | Industrial posts, a suspended crusher housing, a red strike slab and orange warning footprints. | Jump-reactive sliding spikes and warned crusher, then a combination with a guard. |
 | Level05 | Escape yard | Broad connected lanes, two potion pickups and an unmistakable final gate. | Timed speed boost and repeat pickup behavior, mixed with earlier challenges. |
 
-Build each layout from scratch. Do not copy Synty demo scenes or earlier assignment/lab layouts. Reuse the selected source meshes, materials and our player/camera foundation.
+All layouts were built from scratch, without copying Synty demo scenes or earlier assignment/lab layouts. Source meshes/materials and the player/camera foundation are reused.
