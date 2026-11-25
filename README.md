@@ -97,4 +97,4 @@ Movement advances in frame-sized steps, so reaching a target depends on the move
 - These are targeted physics and UI checks with controlled test positioning between scenarios. No test or recording harness is included in the game's Assets folder.
 - All five scenes are enabled in order in the Build Profiles Scene List. A Windows 64-bit Mono build succeeded with zero errors; see [the build summary](Docs/a3/Build-Verification.json).
 - Foundation: [Assignment 02](https://github.com/arty542/CS464-A2-bscs23204), commit `7d1a697`. A2 was not modified.
-- Development is kept on `development`; the final pull request is merged into `main` for marking.
+- Development is kept on `development`; [pull request #1](https://github.com/arty542/CS464-A3-bscs23204/pull/1) brings the completed assignment into `main` for marking.
