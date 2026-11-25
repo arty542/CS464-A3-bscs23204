@@ -2,7 +2,7 @@
 
 **Collect, Dodge, Survive** · Unity 6000.3.24f1 · Lectures 06–07
 
-Five original levels built directly in the Unity Editor through MCP, using the instructor's Synty PolygonGeneric and PolygonPrototype assets. Geometry, colliders, UI and gameplay instances are saved in the scenes; no runtime or Editor script generates the levels. The A2 movement/camera foundation and Git history are retained, while all five A3 layouts are new.
+Five original levels using the instructor's Synty PolygonGeneric and PolygonPrototype assets, with the movement and camera foundation from Assignment 02.
 
 ## Run
 
@@ -11,10 +11,6 @@ Five original levels built directly in the Unity Editor through MCP, using the i
 3. Use **WASD / arrows** to move, **Space** to jump and **R** to restart. Both result panels have clickable restart buttons. Winning also offers the next level; the final level returns to Level01.
 
 Collect **8 of 10 coins** in Levels 1–4 and **10 of 12** in Level 5, then enter the green FINISH gate. Each level starts with three hearts and three lives. Damage uses a shared one-second invulnerability window; empty hearts or a fall consume one life. Respawning keeps collected coins and returns to the latest checkpoint. Restart resets that level completely.
-
-Video recording omitted at the user's request.
-
-
 
 ## Level progression
 
@@ -26,7 +22,7 @@ Video recording omitted at the user's request.
 | Level04 — Press Workshop | A jump wakes sliding spikes that follow the player's landing X. An orange warning precedes the crusher strike. | A checkpoint after the press, a guard and an eastward spike bay. |
 | Level05 — Escape Yard | Two speed potions demonstrate refreshing the timer without stacking speed; the clear outside lane provides room to learn the boost. | Concealed spikes, sliding spikes, a ping-pong guard, a crusher and a final gap jump. |
 
-The concealed and jump-reactive spike variations were added at the user's request, taking inspiration from **Level Devil** and **Trap Adventure 2**. Their spikes are hidden at rest, with an orange footprint and a short warning before damage. They reuse the same Hazard/Health system as ordinary spikes and guards.
+The concealed and jump-reactive spikes take inspiration from **Level Devil** and **Trap Adventure 2**. They are hidden at rest, with an orange footprint and a short warning before damage, and use the same Hazard/Health system as ordinary spikes and guards.
 
 | Level | Screenshot |
 |---|---|
@@ -45,7 +41,7 @@ The concealed and jump-reactive spike variations were added at the user's reques
 - `Health` owns the single i-frame timer. The manager disables movement during the respawn delay, restores the player at rest and grants temporary protection. The final lost life freezes the lose panel.
 - `Crusher` cycles rest → orange warning → visible damaging slab. `ProximitySpikes` and `SlidingSpikes` enable their damage colliders only during their active phases.
 - `PowerUp` destroys the bottle after pickup. The coroutine and remaining-time display live on the player, so destruction does not end the effect. A second pickup replaces the old timer with a full five seconds at the same multiplier. Respawn/restart clears the boost.
-- Reusable gameplay prefabs are in `Assets/Prefabs/A3/`. Synty art selection and integration notes are in [the asset shortlist](Docs/a3/Synty-Asset-Selection.md).
+- Reusable gameplay prefabs are in `Assets/Prefabs/A3/`.
 
 ## Tuning and reasons
 
@@ -89,12 +85,3 @@ The second potion refreshes the duration to five seconds and keeps the multiplie
 **4. Why can equality fail for waypoint arrival, and when can it work?**
 
 Movement advances in frame-sized steps, so reaching a target depends on the movement method and its tolerance. Unity's `Vector3 ==` already uses a very small tolerance, and `MoveTowards` clamps to the target, so equality can work in that combination. An explicit `Vector3.Distance < 0.15f` states this guard's intended arrival radius clearly and remains useful if the movement method changes. See [Unity's Vector3 equality reference](https://docs.unity.com/en-us/engine/6000.3/script-reference/unityengine/vector3/op-equality).
-
-## Verification and repository
-
-- [Level01 Play-mode checks](Docs/a3/Level01-PlayChecks.json): 21 checks, including actual movement input, bounce, gap jump, protected checkpoint respawn and clicks on both restart buttons.
-- [Integration Play-mode checks](Docs/a3/Integration-PlayChecks.json): 38 checks in Level05 covering physical coin/potion/hazard/finish contacts, real jump-triggered sliding, guard states, boost refresh/expiry, i-frames and control lock, zero-heart death, falls, both result panels and final level navigation.
-- These are targeted physics and UI checks with controlled test positioning between scenarios. No test or recording harness is included in the game's Assets folder.
-- All five scenes are enabled in order in the Build Profiles Scene List. A Windows 64-bit Mono build succeeded with zero errors; see [the build summary](Docs/a3/Build-Verification.json).
-- Foundation: [Assignment 02](https://github.com/arty542/CS464-A2-bscs23204), commit `7d1a697`. A2 was not modified.
-- Development is kept on `development`; [pull request #1](https://github.com/arty542/CS464-A3-bscs23204/pull/1) brings the completed assignment into `main` for marking.
