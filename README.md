@@ -12,8 +12,6 @@ Five original levels built directly in the Unity Editor through MCP, using the i
 
 Collect **8 of 10 coins** in Levels 1–4 and **10 of 12** in Level 5, then enter the green FINISH gate. Each level starts with three hearts and three lives. Damage uses a shared one-second invulnerability window; empty hearts or a fall consume one life. Respawning keeps collected coins and returns to the latest checkpoint. Restart resets that level completely.
 
-Video recording omitted at the user's request.
-
 
 
 ## Level progression
