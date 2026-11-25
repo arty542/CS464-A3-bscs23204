@@ -4,6 +4,8 @@
 
 Five original levels using the instructor's Synty PolygonGeneric and PolygonPrototype assets, with the movement and camera foundation from Assignment 02.
 
+**Video:** [Gameplay demonstration](https://drive.google.com/file/d/1795X7af9w40iI5H0PYeH_cTr4TBGIEID/view?usp=sharing)
+
 ## Run
 
 1. Open this folder in Unity **6000.3.24f1** and let packages import.
