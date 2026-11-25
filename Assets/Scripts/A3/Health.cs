@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace CS464.A3
 {
-    [DefaultExecutionOrder(-100)]
     public sealed class Health : MonoBehaviour
     {
         [SerializeField, Min(1)] private int maxHearts = 3;

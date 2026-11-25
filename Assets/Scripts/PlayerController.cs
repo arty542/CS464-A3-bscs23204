@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(1f)] private float fallMultiplier = 2.2f;
 
     public bool IsGrounded => isGrounded;
+    public float SpeedMultiplier => speedMultiplier;
+    public float BoostSecondsRemaining => Mathf.Max(0f, boostEndsAt - Time.time);
 
     private Rigidbody rb;
     private Transform cam;
@@ -26,6 +29,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 groundPoint;
     private Vector3 groundNormal = Vector3.up;
     private bool hasGroundPoint;
+    private float noControlUntil;
+    private float speedMultiplier = 1f;
+    private float boostEndsAt;
+    private Coroutine boost;
 
     private void Awake()
     {
@@ -33,6 +40,7 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main.transform;
         rb.freezeRotation = true;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         moveAction = InputSystem.actions.FindAction("Player/Move", true);
         jumpAction = InputSystem.actions.FindAction("Player/Jump", true);
     }
@@ -52,6 +60,7 @@ public class PlayerController : MonoBehaviour
         groundContacts.Clear();
         isGrounded = false;
         lastGroundedTime = lastPressedTime = -1f;
+        noControlUntil = 0f;
     }
 
     private void Update()
@@ -76,7 +85,8 @@ public class PlayerController : MonoBehaviour
         if (jumpAction.WasPressedThisFrame())
             lastPressedTime = Time.time;
 
-        bool canJump = lastGroundedTime >= 0f && Time.time - lastGroundedTime <= coyoteTime;
+        bool canJump = Time.time >= noControlUntil && lastGroundedTime >= 0f &&
+            Time.time - lastGroundedTime <= coyoteTime;
         bool wantJump = lastPressedTime >= 0f && Time.time - lastPressedTime <= jumpBuffer;
         if (!jumpQueued && canJump && wantJump)
         {
@@ -88,7 +98,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // Set only horizontal velocity; gravity and jumping own the Y component.
-        rb.linearVelocity = new Vector3(move.x * speed, rb.linearVelocity.y, move.z * speed);
+        if (Time.time >= noControlUntil)
+            rb.linearVelocity = new Vector3(move.x * speed * speedMultiplier,
+                rb.linearVelocity.y, move.z * speed * speedMultiplier);
 
         if (jumpQueued)
         {
@@ -104,6 +116,43 @@ public class PlayerController : MonoBehaviour
         // Normal gravity handles ascent; add only the extra acceleration on descent.
         if (rb.linearVelocity.y < 0f)
             rb.AddForce(Physics.gravity * (fallMultiplier - 1f), ForceMode.Acceleration);
+    }
+
+    // Lecture 06-07 / A3: steering must not erase a hazard's impulse next step.
+    public void Knockback(Vector3 push, float seconds)
+    {
+        if (!enabled || rb.isKinematic) return;
+        Vector3 velocity = rb.linearVelocity;
+        rb.linearVelocity = new Vector3(0f, velocity.y, 0f);
+        rb.AddForce(push, ForceMode.Impulse);
+        noControlUntil = Time.time + seconds;
+        jumpQueued = false;
+        lastGroundedTime = lastPressedTime = -1f;
+    }
+
+    // Refresh rule: cancel the old timer; the newest pickup gets a full duration.
+    public void BoostSpeed(float multiplier, float seconds)
+    {
+        if (boost != null) StopCoroutine(boost);
+        speedMultiplier = multiplier;
+        boostEndsAt = Time.time + seconds;
+        boost = StartCoroutine(Boost(seconds));
+    }
+
+    private IEnumerator Boost(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        speedMultiplier = 1f;
+        boostEndsAt = 0f;
+        boost = null;
+    }
+
+    public void ClearBoost()
+    {
+        if (boost != null) StopCoroutine(boost);
+        boost = null;
+        speedMultiplier = 1f;
+        boostEndsAt = 0f;
     }
 
     private void OnCollisionEnter(Collision collision) => UpdateGroundContact(collision);
