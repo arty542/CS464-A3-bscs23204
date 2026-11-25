@@ -1959,7 +1959,7 @@ Transform:
   m_GameObject: {fileID: 312419786}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.08, z: 16}
+  m_LocalPosition: {x: 0, y: 0.08, z: 0}
   m_LocalScale: {x: 4.7, y: 0.1, z: 3.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2354,7 +2354,7 @@ Transform:
   m_GameObject: {fileID: 448215267}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.08, z: 6}
+  m_LocalPosition: {x: 0, y: 0.03, z: 0}
   m_LocalScale: {x: 3.3, y: 0.06, z: 2.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3556,7 +3556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1626232734065784990, guid: dc494f42aedd60c4a85be02ec2b22ec4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1626232734065784990, guid: dc494f42aedd60c4a85be02ec2b22ec4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3564,7 +3564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1626232734065784990, guid: dc494f42aedd60c4a85be02ec2b22ec4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1626232734065784990, guid: dc494f42aedd60c4a85be02ec2b22ec4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3636,7 +3636,7 @@ Transform:
   m_GameObject: {fileID: 659388325}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 16}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 4.4, y: 2, z: 2.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7355,7 +7355,7 @@ Transform:
   m_GameObject: {fileID: 1451988047}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: 6}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8597,8 +8597,8 @@ MonoBehaviour:
   warningTime: 0.5
   activeTime: 1.3
   slideSpeed: 3
-  minX: -4
-  maxX: 4
+  minX: -7
+  maxX: 7
 --- !u!54 &1976854895
 Rigidbody:
   m_ObjectHideFlags: 0
